@@ -1,18 +1,20 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["Run jq"]
+  resolves = ["debug"]
 }
 
 action "debug" {
   uses = "helaili/debug-action@master"
+  needs = ["Run jq"]
+  args = "/github/home/test.json"
 }
 
 
 action "Run jq" {
   uses = "./"
-  needs = ["debug"]
   env = {
     WEBAPP_NAME = "mysampleexpressapp-actions"
+    OUTPUT_FILE = "$HOME/test.json"
   }
-  args = "-j '\"mysampleexpressapp-actions-xxxxx.azurewebsites.net\" | match(\"${WEBAPP_NAME}-(.*).azurewebsites.net\") | \"${WEBAPP_NAME}:\"+.captures[].string+ \" \"' $GITHUB_EVENT_PATH"
+  args = "-j '.head_commit.author.email' $GITHUB_EVENT_PATH"
 }
