@@ -11,6 +11,8 @@ LABEL "com.github.actions.color"="yellow"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y jq 
-    
+
+RUN chmod +x /entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
