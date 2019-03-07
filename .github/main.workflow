@@ -14,5 +14,5 @@ action "Run jq" {
   env = {
     WEBAPP_NAME = "mysampleexpressapp-actions"
   }
-  args = "-j '\"mysampleexpressapp-actions-xxxxx.azurewebsites.net\" | match(\"${WEBAPP_NAME}-(.*).azurewebsites.net\") | \"${WEBAPP_NAME}:\"+.captures[].string+ \" \"' $GITHUB_EVENT_PATH"
+  args = "-j '.pull_request.head.ref' $GITHUB_EVENT_PATH"
 }
