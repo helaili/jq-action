@@ -11,7 +11,7 @@ LABEL "com.github.actions.color"="yellow"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y jq findutils curl
-
+RUN mkdir -p /etc/ssl/certs
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
