@@ -10,7 +10,7 @@ LABEL "com.github.actions.icon"="code"
 LABEL "com.github.actions.color"="yellow"
 
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y jq 
+    apt-get install --no-install-recommends -y jq findutils curl
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
